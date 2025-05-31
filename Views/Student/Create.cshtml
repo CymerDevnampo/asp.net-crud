@@ -1,0 +1,26 @@
+﻿@model asp_net_mvc.Models.Student
+
+<form class="row g-3" asp-action="Create" method="POST" enctype="multipart/form-data">
+
+  <div class="col-md-6">
+    <label asp-for="Name" class="form-label">Name</label>
+       <input type="text" class="form-control" asp-for="Name">
+        <span asp-validation-for="Name" class="text-danger"></span>
+  </div>
+
+  <div class="col-md-6">
+    <label asp-for="Age" class="form-label">Age</label>
+    <input type="number" class="form-control" asp-for="Age">
+    <span asp-validation-for="Age" class="text-danger"></span>
+  </div> 
+
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Add</button>
+  </div>
+</form>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

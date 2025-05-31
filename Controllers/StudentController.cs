@@ -65,5 +65,29 @@ namespace asp_net_mvc.Controllers
 
             return View(student);
         }
+
+        public IActionResult Delete(int id)
+        {
+            var student = _context.Students.Find(id);
+            if (student == null)
+            {
+                return NotFound();
+            }
+            return View(student);
+        }
+
+        [HttpPost,ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var student = _context.Students.Find(id);
+            if(student == null)
+            {
+                return NotFound();
+            }
+            _context.Students.Remove(student);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

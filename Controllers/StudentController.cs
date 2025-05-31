@@ -37,5 +37,33 @@ namespace asp_net_mvc.Controllers
             }
             return View(student);
         }
+
+        public IActionResult Edit(int id)
+        {
+            var student = _context.Students.Find(id);
+            if (student == null)
+            {
+                return NotFound();
+            }
+            return View(student);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int id, Student student)
+        {
+            if(id != student.Id)
+            {
+                return NotFound();
+            }
+
+            if(ModelState.IsValid)
+            {
+                _context.Update(student);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(student);
+        }
     }
 }

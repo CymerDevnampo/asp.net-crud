@@ -10,7 +10,11 @@
 
 <table class="table table-striped table-hover">
     <thead>
-        <tr><th>Name</th><th>Age</th></tr>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Action</th>
+        </tr>
     </thead>
     <tbody>
         @foreach (var student in Model)
@@ -18,6 +22,9 @@
             <tr>
                 <td>@student.Name</td>
                 <td>@student.Age</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@student.Id" class="btn btn-sm btn-warning">Edit</a>
+                </td>
             </tr>
         }
     </tbody>
